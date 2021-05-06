@@ -1,15 +1,19 @@
-// Type definitions for quick-bus 0.3
-// Project: https://github.com/baz/foo (Does not have to be to GitHub, but prefer linking to a source code repository rather than to a project website.)
+// Type definitions for @condenast/quick-bus 0.3
+// Project: https://github.com/CondeNast/quick-bus (Does not have to be to GitHub, but prefer linking to a source code repository rather than to a project website.)
 // Definitions by: Socheat Sok <https://github.com/me>
-// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
+// Definitions: https://github.com/socheatsok78/quick-bus-types
 
-/*~ If this module is a UMD module that exposes a global variable 'myLib' when
- *~ loaded outside a module loader environment, declare that global here.
- *~ Otherwise, delete this declaration.
- */
-export as namespace Bus;
+declare module '@condenast/quick-bus' {
+  export type RemoveListener = () => void
+  export type History = [string, any]
+  export type HistoryGraph = History[]
+  export type Meta = { topic: string }
 
-/*~ If this module has methods, declare them as functions like so.
- */
-export function on(a: string): string;
-export function off(a: number): number;
+  export default class Bus {
+    on(topic: string, cb: (data: any, meta: Meta) => void): RemoveListener
+    emit(topic: string, data?: any): void
+    subscribe(topic: string, cb: (data: any, meta: Meta) => void): void
+    publish(topic: string, data?: any): void
+    history(): HistoryGraph
+  }
+}
