@@ -21,3 +21,12 @@ Add `./node_modules/@socheatsok78` to `tsconfig.json`, `compilerOptions.typeRoot
     ]
 }
 ```
+
+or within your code
+
+```js
+/// <reference types="@socheatsok78/quick-bus-types" />
+
+import Bus from '@condenast/quick-bus'
+const bus = new Bus()
+```
